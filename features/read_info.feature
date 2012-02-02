@@ -1,17 +1,13 @@
 Feature: Format RESTful request
 
-  Scenario Outline: With the following fields of computer information we expect a RESTful format 
-    Given the inventory DNS is <srv_dns>
-      And this macid0 <macid0>       
-      And this serial <serial>
-      And this ws_name <ws_name>      
-      And this ws_model <ws_model>
-      And this cpu_speed <cpu_speed>  
-      And this cpu_name <cpu_name>
-      And this ram <ram>
-      And this os_version <os_version>
-      And this en0_ip <en0_ip>
-      And this en1_mac <en1_mac>
-      And this last_user <last_user>
-      And this backup_hd <backup_hd>
-    Then the output should read: curl https://<srv_dns>/computers/<macid0> -u computer:Tr4ck-Stuf -X PUT -d serial="<serial>" -d last_user="<last_user>" -d en0_ip="<en0_ip>" -d cpu_name="<cpu_name>" -d backup_hd="<backup_hd>" -d cpu_speed="cpu_speed" -d issued_to="" -d os_version="<os_version>" -d ws_name="<ws_name>" -d en1_ip="<en1_ip>" -d en1_mac="<en1_mac>" -d ram="<ram>" -d ws_model="<ws_model>" -d macid0="<macid0>" -d status="Deployed" -d image_vers="Faculty_v1.0r2" 
+  Scenario: With the following fields of computer information we expect a RESTful format 
+    Given we run the inventory script with the computer specs in JSON format "{'serial'=>'W89507PX5RU'}" 
+    
+    Then the computer specs in hash format should be {'serial'=>'W89507PX5RU'}
+
+#    Then the computer specs in hash format should be {"serial":"W89507PX5RU"}
+
+    #Given we run the inventory script with the computer specs in JSON format {"macid0":"d49a20d12e03","serial":"W89507PX5RU","ws_name":"itt507PX5RU","ws_model":"iMac11,1","cpu_speed":"2.8 GHz","cpu_name":"Intel Core i7","ram":"16 GB","os_version":"Mac OS X 10.6.8","en0_ip":"10.190.40.8","en1_mac":"d4\:9a\:20\:5b\:9d\:6a","en1_ip":"10.184.16.125","last_user":"agomez","backup_hd":"","image_vers":"Faculty_v1.0r2","status":"Deployed","issued_to":"agomez"}
+   # Given the computer specs in hash format should be {"macid0"=>"d4:9a:20:d1:2e:03", "serial"=>"W89507PX5RU", "ws_name"=>"itt507PX5RU", "ws_model"=>"iMac11,1", "cpu_speed"=>"2.8 GHz", "cpu_name"=>"Intel Core i7", "ram"=>"16 GB", "os_version"=>"Mac OS X 10.6.8", "en0_ip"=>"10.190.40.8", "en1_mac"=>"d4:9a:20:5b:9d:6a", "en1_ip"=>"10.184.16.125", "last_user"=>"first-boot", "backup_hd"=>"", "status"=>"Ready", "issued_to"=>""}
+   # Then the output should be curl https://10.164.64.57/computers/d4:9a:20:d1:2e:03 -u computer:Tr4ck-Stuf -X PUT -d serial='W89507PX5RU' -d last_user='agomez' -d en0_ip='10.190.40.8' -d cpu_name='Intel Core i7' -d backup_hd='' -d cpu_speed='2.8 GHz' -d os_version='Mac OS X 10.6.8' -d ws_name='itt507PX5RU' -d en1_ip='' -d en1_mac='d4:9a:20:5b:9d:6a' -d ram='16 GB' -d ws_model='iMac11,1' -d macid0='d4:9a:20:d1:2e:03'
+ 
