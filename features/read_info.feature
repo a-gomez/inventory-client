@@ -1,9 +1,9 @@
 Feature: Format RESTful request
 
   Scenario: With the following fields of computer information we expect a RESTful format 
-    Given we run the inventory script with the computer specs in JSON format "{'serial'=>'W89507PX5RU'}" 
+    Given we run the inventory script with the computer specs in JSON format "{'macid0'=>'d4:9a:20:d1:2e:03', 'serial'=>'W89507PX5RU', 'ws_name'=>'itt507PX5RU', 'ws_model'=>'iMac11,1', 'cpu_speed'=>'2.8 GHz', 'cpu_name'=>'Intel Core i7', 'ram'=>'16 GB', 'os_version'=>'Mac OS X 10.6.8', 'en0_ip'=>'10.190.40.8', 'en1_mac'=>'d4:9a:20:5b:9d:6a', 'en1_ip'=>'10.184.16.125', 'last_user'=>'first-boot', 'backup_hd'=>'', 'status'=>'Ready', 'issued_to'=>''}" 
     
-    Then the computer specs in hash format should be {'serial'=>'W89507PX5RU'}
+    Then the computer specs in hash format should be {'macid0'=>'d4:9a:20:d1:2e:03', 'serial'=>'W89507PX5RU', 'ws_name'=>'itt507PX5RU', 'ws_model'=>'iMac11,1', 'cpu_speed'=>'2.8 GHz', 'cpu_name'=>'Intel Core i7', 'ram'=>'16 GB', 'os_version'=>'Mac OS X 10.6.8', 'en0_ip'=>'10.190.40.8', 'en1_mac'=>'d4:9a:20:5b:9d:6a', 'en1_ip'=>'10.184.16.125', 'last_user'=>'first-boot', 'backup_hd'=>'', 'status'=>'Ready', 'issued_to'=>''}
 
 #    Then the computer specs in hash format should be {"serial":"W89507PX5RU"}
 
