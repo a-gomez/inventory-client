@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
 require 'yaml'
+require 'json'
 
 max = 6
 time = 3
@@ -201,6 +202,9 @@ elsif ( File::exists?("first_user.txt") )
     #exec("cat db-last-user.sh")
     
 end
+puts results_hash.inspect
+puts JSON.generate(results_hash)
+
 # any other condition - maybe on and no one logged on -- just checkin with the inventory server
 #else   
 #    system( File.read("db-hw-update.sh").strip )
