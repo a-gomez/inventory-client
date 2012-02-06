@@ -1,2 +1,6 @@
-inventory.rb : queries local macintosh hardware and updates inventory server regarding computer's status
-return.rb : unregisters the macintosh computer and releases the current user 
+require 'github/markup'
+
+*inventory.rb* : queries local macintosh hardware and updates inventory server regarding computer's status
+*return.rb* : unregisters the macintosh computer and releases the current user 
+
+Authorization is being done through an external yaml file, which reads in the username and password. 
