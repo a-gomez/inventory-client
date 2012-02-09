@@ -17,10 +17,10 @@ host_ip   = '-i -k https://10.164.64.57'
 #host_ip    = '-i http://127.0.0.1:4567'
 
 auth = YAML::load_file("auth.yml")
-usrname = auth['usrname']
-passwd  = auth['passwd']
+inv_usrname = auth['inv_usrname']
+inv_passwd  = auth['inv_passwd']
 
-#puts "usrname: #{usrname}, passwd: #{passwd}"
+#puts "inv_usrname: #{inv_usrname}, inv_passwd: #{inv_passwd}"
 #puts
 
 results_hash = {
@@ -41,7 +41,7 @@ results_hash = {
 
 # always update the hardware profile
 f = File.new("db-hw-update.sh", "w")
-   f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X PUT"
+   f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X PUT"
    results_hash.each { |key, value|  f.print " -d #{key}=\"#{value}\"" } 
    f.puts     
 f.close  
@@ -63,13 +63,13 @@ if !(File::exists?("first_run.txt"))
    results_hash["issued_to"] = ""
 
    f = File.new("db-hw-create.sh", "w")
-      f.print "curl #{host_ip}/computers -u #{usrname}:#{passwd} -X POST"
+      f.print "curl #{host_ip}/computers -u #{inv_usrname}:#{inv_passwd} -X POST"
       results_hash.each { |key, value|  f.print " -d #{key}=\"#{value}\"" }
       f.puts
    f.close
 
    f = File.new("db-hw-update.sh", "w")
-      f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X PUT"
+      f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X PUT"
       results_hash.each { |key, value|  f.print " -d #{key}=\"#{value}\"" } 
       f.puts     
    f.close  
@@ -93,15 +93,15 @@ if !(File::exists?("first_run.txt"))
       f.close
       
       f = File.new("db-hw-return.sh", "w")
-         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X PUT -d issued_to=\"IT\" -d status=\"instock\" "
+         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X PUT -d issued_to=\"IT\" -d status=\"instock\" "
       f.close
 
       f = File.new("db-hw-delete.sh", "w")
-         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X DELETE "
+         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X DELETE "
       f.close
 
       f = File.new("reset-testing.sh", "w")
-         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X DELETE "
+         f.puts "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X DELETE "
          f.puts "rm first*.txt"
          f.puts "rm issued*"
          f.puts "rm last*"
@@ -134,7 +134,7 @@ elsif !( File::exists?("first_user.txt") )
    results_hash["status"] = "Registered"  
 	    
    f = File.new("db-issued-to.sh", "w")
-       f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X PUT"
+       f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X PUT"
        results_hash.each { |key, value|  f.print " -d #{key}=\"#{value}\"" } 
        f.puts     
    f.close  
@@ -177,7 +177,7 @@ elsif ( File::exists?("first_user.txt") )
     f.close
 
     f = File.new("db-last-user.sh", "w")
-       f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{usrname}:#{passwd} -X PUT"
+       f.print "curl #{host_ip}/computers/#{results_hash.fetch("macid0")} -u #{inv_usrname}:#{inv_passwd} -X PUT"
        results_hash.each { |key, value|  f.print " -d #{key}=\"#{value}\"" } 
        f.puts     
     f.close
