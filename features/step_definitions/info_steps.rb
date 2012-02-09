@@ -6,7 +6,7 @@ Given /^we run the inventory script with the computer specs in hash format (.*)$
   print "given input hash, print output:"
   print @output
 
-  @hash_output = eval(@output)
+  #@hash_output = eval(@output)
 end
 
 Then /^the computer specs in hash format should be (.*)$/ do |internal_hash|
@@ -21,6 +21,6 @@ end
 Then /^the output in JSON format should be (.*)$/ do |specs_JSON|
   #@output.to_json.should == specs_JSON
   #JSON.generate(@output).should == specs_JSON
-  @hash_output.to_json.should == specs_JSON
+  @output.should == specs_JSON
 end
 
