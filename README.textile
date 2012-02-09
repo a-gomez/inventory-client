@@ -6,4 +6,4 @@ GitHub::Markup.render(README.textile, File.read(README.textile))
 
 *inventory.rb* : new script being written via cucumber TDD to replace inv-old.rb
 
- Authorization is being done through an external yaml file, which is used to read in the username and password. Should each script have its own yaml file? Should there be one global file, or is that too much of a security threat?
+Authorization is being done through an external yaml file, which is used to read in the username and password. Should each script have its own yaml file? Should there be one global file, or is that too much of a security threat?
